@@ -11,12 +11,12 @@ mongoose.connect(config.database);
 
 // On database connection
 mongoose.connection.on('connected', () => {
-    console.log('Connected to database ' + config.database);
+  console.log('Connected to database ' + config.database);
 });
 
 // On database error
-mongoose.connection.on('error', (err) => {
-    console.log('Database error ' + err);
+mongoose.connection.on('error', err => {
+  console.log('Database error ' + err);
 });
 
 const app = express();
@@ -43,17 +43,16 @@ require('./config/passport')(passport);
 app.use('/users', users);
 
 // Index Route
-app.get('/map', (req, res) => {
-    res.send('Invalid Endpoint');
-    res.end();
+app.get('/test', (req, res) => {
+  res.json({ msg: 'You are awesome' });
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 // res.redirect('http://localhost:3000');
 
 // Start Server
 app.listen(port, () => {
-    console.log('Server started on port ' + port);
+  console.log('Server started on port ' + port);
 });
